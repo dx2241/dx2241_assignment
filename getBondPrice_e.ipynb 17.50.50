@@ -1,0 +1,40 @@
+{
+  "metadata": {
+    "kernelspec": {
+      "name": "python",
+      "display_name": "Python (Pyodide)",
+      "language": "python"
+    },
+    "language_info": {
+      "codemirror_mode": {
+        "name": "python",
+        "version": 3
+      },
+      "file_extension": ".py",
+      "mimetype": "text/x-python",
+      "name": "python",
+      "nbconvert_exporter": "python",
+      "pygments_lexer": "ipython3",
+      "version": "3.8"
+    }
+  },
+  "nbformat_minor": 4,
+  "nbformat": 4,
+  "cells": [
+    {
+      "cell_type": "code",
+      "source": "def getBondPrice_E(face, couponRate, m, yc):\n    coupon = face * couponRate\n    bondPrice = 0\n    for t, y_t in enumerate(yc, start=1):\n        if t == m:\n            cf = coupon + face\n        else:\n            cf = coupon\n        pv_cf = cf / (1 + y_t)**t\n        bondPrice += pv_cf\n    \n    return bondPrice\n\n#test\nyc = [0.010, 0.015, 0.020, 0.025, 0.030] \nface = 2000000 \ncouponRate = 0.04  \nm = 5 \n\n#getbondprice\nprice = getBondPrice_E(face, couponRate, m, yc)\nprint(f\"Bond price: ${price:,.2f}\")\n",
+      "metadata": {
+        "trusted": true
+      },
+      "outputs": [
+        {
+          "name": "stdout",
+          "text": "Bond price: $2,098,948.97\n",
+          "output_type": "stream"
+        }
+      ],
+      "execution_count": 1
+    }
+  ]
+}
